@@ -41,7 +41,8 @@ sudo apt install -y \
     npm \
     openjdk-21-jdk \
     golang-go \
-    gnome-shell-extension-manager
+    gnome-shell-extension-manager \
+    fonts-jetbrains-mono
 
 git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
 cd ~/.bash_it && ./install.sh --silent
