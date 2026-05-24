@@ -145,17 +145,6 @@ chmod 600 ~/.ssh/config
 echo "================================================="
 echo " Finished"
 echo "================================================="
-
-echo ""
-echo "You are now reusing your OLD:"
-echo "- SSH identity"
-echo "- GPG identity"
-echo "- GitHub trust"
-echo "- Verified commit signature"
-echo ""
-echo "No new keys were created."
-echo ""
-
 echo "Test commands:"
 echo ""
 echo "ssh -T git@github.com"
