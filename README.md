@@ -22,12 +22,10 @@ Simple scripts to set up my Ubuntu/Linux Mint workstation.
 - `setup/09-bash-aliases.sh`: append custom shell aliases to `~/.bashrc`
 - `setup/10-auth-keys.sh`: import SSH and GPG keys and configure Git signing
 
-Examples:
+Usage:
 
 ```bash
 bash setup/setup.sh
-bash setup/07-docker.sh
-bash setup/10-auth-keys.sh
 ```
 
 ## Docker Scripts
@@ -37,11 +35,9 @@ bash setup/10-auth-keys.sh
 - `docker/docker-cleanup.sh`: clean Docker resources in `safe` or `full` mode
 - `docker/dockerfile-init.sh`: generate a starter `Dockerfile` for `node`, `python`, `go`, or `java`
 
-Examples:
+Usage:
 
 ```bash
 bash docker/main.sh
-bash docker/main.sh verify
-bash docker/main.sh cleanup safe
-bash docker/main.sh init node 3000
+cd docker && ./main.sh
 ```

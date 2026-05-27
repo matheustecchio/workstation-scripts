@@ -5,7 +5,6 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-ACTION="${1:-}"
 
 print_menu() {
     printf '=========================================\n'
@@ -19,30 +18,33 @@ print_menu() {
 
 run_action() {
     case "$1" in
-        1|verify)
+        1)
             bash "$SCRIPT_DIR/docker-verify.sh"
             ;;
-        2|cleanup)
-            bash "$SCRIPT_DIR/docker-cleanup.sh" "${2:-}"
+        2)
+            bash "$SCRIPT_DIR/docker-cleanup.sh"
             ;;
-        3|init)
-            bash "$SCRIPT_DIR/dockerfile-init.sh" "${2:-}" "${3:-}"
+        3)
+            bash "$SCRIPT_DIR/dockerfile-init.sh"
             ;;
-        q|quit|exit)
+        q|Q)
             printf 'Bye\n'
+            return 1
             ;;
         *)
             printf 'Invalid option: %s\n' "$1" >&2
-            return 1
             ;;
     esac
 }
 
-if [ -n "$ACTION" ]; then
-    run_action "$@"
-    exit 0
-fi
+while true; do
+    print_menu
+    read -r -p 'Choose an option [1/2/3/q]: ' ACTION
+    if ! run_action "$ACTION"; then
+        break
+    fi
 
-print_menu
-read -r -p 'Choose an option [1/2/3/q]: ' ACTION
-run_action "$ACTION"
+    printf '\n'
+    read -r -p 'Press ENTER to return to the menu...'
+    printf '\n'
+done
