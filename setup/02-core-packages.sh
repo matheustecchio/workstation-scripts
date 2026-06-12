@@ -44,5 +44,21 @@ sudo apt install -y \
     gnome-shell-extension-manager \
     fonts-jetbrains-mono
 
+wget -qO- https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor > google-chrome.gpg
+
+sudo install -D -o root -g root -m 644 \
+    google-chrome.gpg \
+    /etc/apt/keyrings/google-chrome.gpg
+
+echo \
+"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/google-chrome.gpg] \
+https://dl.google.com/linux/chrome/deb/ stable main" \
+| sudo tee /etc/apt/sources.list.d/google-chrome.list > /dev/null
+
+rm -f google-chrome.gpg
+
+sudo apt update
+sudo apt install -y google-chrome-stable
+
 git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
 cd ~/.bash_it && ./install.sh --silent
