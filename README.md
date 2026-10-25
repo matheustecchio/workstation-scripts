@@ -21,11 +21,32 @@ Simple scripts to set up my Ubuntu/Linux Mint workstation.
 - `setup/08-dev-folders.sh`: create the `~/workspace` development directory
 - `setup/09-bash-aliases.sh`: append custom shell aliases to `~/.bashrc`
 - `setup/10-auth-keys.sh`: import SSH and GPG keys and configure Git signing
+- `setup/11-second-brain-drive-sync.sh`: sync a readable Second Brain folder to Google Drive every five minutes
 
 Usage:
 
 ```bash
 bash setup/setup.sh
+```
+
+The Second Brain step expects the vault at `~/Documents/Second-Brain`. It installs
+`rclone` when needed, configures a user systemd timer, and excludes Git data,
+credentials, caches, plugins, and local history. If the `gdrive` remote does not
+exist, the script opens the interactive `rclone` configuration.
+
+Run only this step with:
+
+```bash
+bash setup/11-second-brain-drive-sync.sh
+```
+
+Optional environment variables:
+
+```bash
+SECOND_BRAIN_DIR="$HOME/Documents/Second-Brain" \
+SECOND_BRAIN_REMOTE="gdrive" \
+SECOND_BRAIN_DRIVE_FOLDER="Second Brain" \
+bash setup/11-second-brain-drive-sync.sh
 ```
 
 ## Docker Scripts

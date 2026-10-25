@@ -37,6 +37,7 @@ run_step "07-docker.sh"
 run_step "08-dev-folders.sh"
 run_step "09-bash-aliases.sh"
 run_step "10-auth-keys.sh"
+run_step "11-second-brain-drive-sync.sh"
 
 echo "================================================="
 if [ ${#FAILURES[@]} -eq 0 ]; then
